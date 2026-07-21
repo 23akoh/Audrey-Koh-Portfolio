@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Portfolio</title>
+    <style>
+        /* CSS Variables for our Pastel Purple Theme */
+        :root {
+            --bg-color: #f9f5ff; /* Pale lavender background */
+            --text-main: #2d1b4e; /* Deep purple for high contrast text */
+            --text-muted: #5b4682; /* Lighter purple for secondary text */
+            --accent-color: #9d7fe3; /* Bright pastel purple for accents */
+            --accent-hover: #7e5ac5; /* Darker accent for hovers */
+            --card-bg: #ffffff; /* Clean white cards */
+            --shadow-sm: 0 4px 6px rgba(157, 127, 227, 0.1);
+            --shadow-md: 0 10px 20px rgba(157, 127, 227, 0.15);
+            --radius: 16px;
+        }
+
+        /* Global Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utility */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px); /* Blur effect */
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(157, 127, 227, 0.2);
+            padding: 16px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            height: 40px; /* Reserves space for typing effect */
+        }
+
+        .typing-text {
+            color: var(--accent-color);
+            font-weight: 600;
+            border-right: 3px solid var(--accent-color);
+            padding-right: 5px;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+
+        /* Academics Section */
+        .academics-grid {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .academic-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .academic-card h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge {
+            background: rgba(157, 127, 227, 0.1);
+            color: var(--accent-hover);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(157, 127, 227, 0.3);
+        }
+
+        /* Extracurriculars Timeline */
+        .timeline {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(157, 127, 227, 0.1);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 16px;
+            background: rgba(157, 127, 227, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 24px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 12px;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .nav-links { display: none; /* Can be replaced with a hamburger menu later */ }
+            .timeline { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Portfolio.</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#academics">Academics</a></li>
+                <li><a href="#extracurriculars">Extracurriculars</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="about" class="hero container">
+        <h1>Hi, I'm [Your Name]</h1>
+        <p>I am an <span class="typing-text" id="typewriter"></span></p>
+    </section>
+
+    <section id="academics" class="container">
+        <h2>Academics</h2>
+        <div class="academics-grid">
+            <div class="academic-card">
+                <h3>A-Levels</h3>
+                <div class="badges">
+                    <span class="badge">Maths</span>
+                    <span class="badge">Further Maths</span>
+                    <span class="badge">Computing</span>
+                    <span class="badge">Physics</span>
+                </div>
+            </div>
+            <div class="academic-card">
+                <h3>GCSEs</h3>
+                <div class="badges">
+                    <span class="badge">Maths</span>
+                    <span class="badge">English</span>
+                    <span class="badge">Triple Science</span>
+                    <span class="badge">French</span>
+                    <span class="badge">Computing</span>
+                    <span class="badge">Music</span>
+                    <span class="badge">Geography</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="extracurriculars" class="container">
+        <h2>Extracurriculars & Achievements</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="emoji">🩰</div>
+                <div class="timeline-content">
+                    <h4>English National Ballet Associates Training</h4>
+                    <p>Selected for rigorous professional training (2025-2027)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🏑</div>
+                <div class="timeline-content">
+                    <h4>U18 Indoor Hockey National Finals</h4>
+                    <p>Selected to compete as a U14 player. Achieved 1st place in London, 6th in England (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🏆</div>
+                <div class="timeline-content">
+                    <h4>Jack Petchey Award</h4>
+                    <p>Awarded for outstanding contribution to the London Children’s Ballet (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🎹</div>
+                <div class="timeline-content">
+                    <h4>Grade 8 Trinity Piano</h4>
+                    <p>Achieved Distinction (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🩰</div>
+                <div class="timeline-content">
+                    <h4>London Children’s Ballet</h4>
+                    <p>Company Member (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🏅</div>
+                <div class="timeline-content">
+                    <h4>Duke of Edinburgh</h4>
+                    <p>Bronze Award Achieved</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🎭</div>
+                <div class="timeline-content">
+                    <h4>Performance Platform</h4>
+                    <p>Featured performer (2024)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🩰</div>
+                <div class="timeline-content">
+                    <h4>Scottish Ballet Cast</h4>
+                    <p>Company Cast Member (2022)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">✨</div>
+                <div class="timeline-content">
+                    <h4>Intensives</h4>
+                    <p>Royal Ballet + Ballet Boost</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Tech & Science Projects</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-image">
+                    Project Image Placeholder
+                </div>
+                <div class="project-content">
+                    <h3>Science Simulation</h3>
+                    <p>A web-based interactive tool demonstrating physical concepts using HTML5 Canvas and vanilla JavaScript.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                    Project Image Placeholder
+                </div>
+                <div class="project-content">
+                    <h3>Data Analysis Dashboard</h3>
+                    <p>A responsive dashboard parsing datasets to visualize sports performance metrics over time.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const texts = ["A-Level STEM Student", "Elite Ballet Dancer", "Pianist & Athlete"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+        let isDeleting = false;
+
+        function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+
+            if (isDeleting) {
+                letter = currentText.slice(0, --index);
+            } else {
+                letter = currentText.slice(0, ++index);
+            }
+
+            document.getElementById("typewriter").textContent = letter;
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && letter.length === currentText.length) {
+                typeSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false;
+                count++;
+                typeSpeed = 500; // Pause before typing new word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start the typing effect when the window loads
+        window.onload = () => {
+            setTimeout(type, 1000);
+        };
+    </script>
+</body>
+</html>
