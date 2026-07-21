@@ -214,6 +214,12 @@
             font-weight: 500;
         }
 
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
         /* Projects Section */
         .projects-grid {
             display: grid;
@@ -241,7 +247,8 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .project-content {
@@ -334,11 +341,154 @@
             <div class="timeline-item">
                 <div class="emoji">🩰</div>
                 <div class="timeline-content">
-                    <h4>English national ballet associates training 2026-2027</h4>
+                    <h4>English National Ballet Associates Training</h4>
+                    <p>Selected for rigorous professional training (2026-2027)</p>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="emoji">🩰</div>
                 <div class="timeline-content">
-                    <h4>English national ballet
+                    <h4>English National Ballet Associates Training</h4>
+                    <p>Selected for rigorous professional training (2025-2026)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🏑</div>
+                <div class="timeline-content">
+                    <h4>U18 Indoor Hockey National Finals</h4>
+                    <p>Selected to compete as a U14 player. Achieved 1st place in London, 6th in England (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🏆</div>
+                <div class="timeline-content">
+                    <h4>Jack Petchey Award</h4>
+                    <p>Awarded for outstanding contribution to the London Children’s Ballet (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🎹</div>
+                <div class="timeline-content">
+                    <h4>Grade 8 Trinity Piano</h4>
+                    <p>Achieved Distinction (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🩰</div>
+                <div class="timeline-content">
+                    <h4>London Children’s Ballet</h4>
+                    <p>Company Member (2025)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🏅</div>
+                <div class="timeline-content">
+                    <h4>Duke of Edinburgh</h4>
+                    <p>Bronze Award Achieved</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🎭</div>
+                <div class="timeline-content">
+                    <h4>Performance Platform</h4>
+                    <p>Featured performer (2024)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">🩰</div>
+                <div class="timeline-content">
+                    <h4>Scottish Ballet Cast</h4>
+                    <p>Company Cast Member (2022)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="emoji">✨</div>
+                <div class="timeline-content">
+                    <h4>Intensives</h4>
+                    <p>Royal Ballet + Ballet Boost</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Tech & Science Projects</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);">
+                    Project Image Placeholder
+                </div>
+                <div class="project-content">
+                    <h3>Science Simulation</h3>
+                    <p>A web-based interactive tool demonstrating physical concepts using HTML5 Canvas and vanilla JavaScript.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                    Project Image Placeholder
+                </div>
+                <div class="project-content">
+                    <h3>Data Analysis Dashboard</h3>
+                    <p>A responsive dashboard parsing datasets to visualize sports performance metrics over time.</p>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const texts = ["an A-Level STEM Student", "an Elite Ballet Dancer", "an Athlete & Pianist"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+        let isDeleting = false;
+
+        function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+
+            if (isDeleting) {
+                letter = currentText.slice(0, --index);
+            } else {
+                letter = currentText.slice(0, ++index);
+            }
+
+            document.getElementById("typewriter").textContent = letter;
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && letter.length === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false;
+                count++;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        window.onload = () => {
+            setTimeout(type, 1000);
+        };
+    </script>
+</body>
+</html>
